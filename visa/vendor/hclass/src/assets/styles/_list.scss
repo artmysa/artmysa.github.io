@@ -1,0 +1,34 @@
+/**
+ * @description: En este archivo se definiran las listas.
+ * @file: _list.scss
+ */
+
+.list-inline {
+
+	li {
+		display: inline-block;
+		margin : 0 6px 0 0;
+
+		&:last-child {
+			margin: 0;
+		}
+	}
+}
+
+.list-none {
+	padding: 0;
+	margin : 0;
+
+	li {
+		list-style : none;
+	}
+}
+
+.list-middle {
+
+	li {
+		vertical-align: middle;
+	}
+}
+
+

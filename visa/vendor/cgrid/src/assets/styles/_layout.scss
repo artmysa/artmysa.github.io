@@ -1,0 +1,24 @@
+.cgrid-container{
+	@include container();
+}
+
+.custom_Grid {
+
+	.Grid__left {
+		@include custom-column($column:6, $fluid:false, $type: width);
+	}
+
+	.Grid__right {
+		@include custom-column($column:6, $type: width);
+	}
+
+	@media (max-width: $vp-mobile){
+		.Grid__left {
+			@include custom-column($column:8, $fluid:false, $type: width);
+		}
+
+		.Grid__right {
+			@include custom-column($column:4, $type: width);
+		}
+	}
+}

@@ -1,0 +1,211 @@
+/**
+ * @description: Clases de inicio.
+ * @mixing: class-gral
+ */
+@mixin class-gral{
+
+	.#{$row-class}{
+		margin-left:ceil(-($gt-width) / 2)#{$gb-unit};
+		margin-right:floor(-($gt-width) / 2)#{$gb-unit};
+		@include clear-both;
+	}
+
+	[class*="#{$col-prefix}"]{
+		min-height: 1px;
+		padding-left:  ceil(($gt-width) / 2)#{$gb-unit};
+		padding-right: floor(($gt-width) / 2)#{$gb-unit};
+	}
+
+}
+
+/**
+ * @description: Configuracion de container.
+ * @mixing: container
+ * @param {number} ancho de layout
+ */
+@mixin container($width: $gb-layout){
+	width: 100%;
+	max-width: $width#{$gb-unit};
+	margin: auto;
+	@include clear-both();
+}
+
+/**
+ * @description: Box Sizing.
+ * @mixing: box-sizing
+ * @param {text} valor box sizing
+ */
+@mixin box-sizing($boxmodel) {
+	-webkit-box-sizing: $boxmodel;
+		 -moz-box-sizing: $boxmodel;
+					box-sizing: $boxmodel;
+}
+
+/**
+ * @description: Limpia modelo de caja.
+ * @mixing: clear-both
+ */
+@mixin clear-both() {
+	&:before,
+	&:after {
+		content: " "; // 1
+		display: table; // 2
+	}
+	&:after {
+		clear: both;
+	}
+}
+
+/**
+ * @description: Construye Grillas.
+ * @mixing: make-grid
+ */
+@mixin make-cgrid($class) {
+	@include float-cgrid-columns($class);
+	@include loop-cgrid-columns($col-total, $class, width);
+	@include loop-cgrid-columns($col-total, $class, pull);
+	@include loop-cgrid-columns($col-total, $class, push);
+	@include loop-cgrid-columns($col-total, $class, offset);
+}
+
+/**
+ * @description: Agrega atributo float.
+ * @mixing: float-grid-columns
+ */
+@mixin float-cgrid-columns($class, $i: 1, $list: ".col-#{$i}-#{$class}") {
+
+  @for $i from (1 + 1) through $col-total {
+    $list: "#{$list}, .col-#{$i}-#{$class}";
+  }
+
+  #{$list} {
+    float: left;
+  }
+
+}
+
+/**
+ * @description: Agrega atributos a columnas.
+ * @mixing: loop-grid-columns
+ * @param {totalColumns} num, total de columnas
+ * @param {class} string, nombre de clase
+ * @param {type} string, tipo de atributo
+ */
+@mixin loop-cgrid-columns($totalColumns, $class, $type) {
+	@for $i from 0 through $totalColumns {
+		@include calc-cgrid-column($i, $class, $type);
+	}
+}
+
+/**
+ * @description: Agrega atributos a columnas.
+ * @mixing: loop-grid-columns
+ * @param {index} num, indice
+ * @param {class} string, nombre de clase
+ * @param {type} string, tipo de atributo
+ */
+@mixin calc-cgrid-column($index, $class, $type) {
+
+	@if ($type == width) and ($index > 0) {
+		.#{$col-prefix}#{$index}-#{$class} {
+			width: percentage(($index / $col-total));
+		}
+	}
+
+	@if ($type == push) and ($index > 0) {
+		.#{$col-prefix}#{$index}-push-#{$class} {
+			left: percentage(($index / $col-total));
+		}
+	}
+
+	@if ($type == pull) and ($index > 0) {
+		.#{$col-prefix}#{$index}-pull-#{$class} {
+			right: percentage(($index / $col-total));
+		}
+	}
+
+	@if ($type == offset) {
+		.#{$col-prefix}#{$index}-offset-#{$class} {
+			margin-left: percentage(($index / $col-total));
+		}
+	}
+}
+
+/**
+ * @description: Agrega atributos a columnas customizadas.
+ * @mixing: custom-cgrid-column
+ * @param {index} num, indice
+ * @param {class} string, nombre de clase
+ * @param {type} string, tipo de atributo
+ */
+@mixin custom-cgrid-column($column, $type) {
+
+	@if ($type == width){
+		width: percentage(($column / $col-total));
+	}
+
+	@if ($type == push){
+		left: percentage(($column / $col-total));
+	}
+
+	@if ($type == pull){
+		right: percentage(($column / $col-total));
+	}
+
+	@if ($type == offset) {
+		margin-left: percentage(($column / $col-total));
+	}
+}
+
+/**
+ * @description: Rompe columna.
+ * @mixing: clear-cgrid-column
+ * @param {class} string, nombre de clase
+ */
+@mixin clear-cgrid-column($class) {
+	@for $i from 1 through $col-total {
+		.#{$row-prefix}#{$i}-#{$class}{
+			@if($i == 1){
+				[class*="#{$col-prefix}"]:nth-of-type(#{$i}n+#{$i}){
+					clear: both;
+				}
+			}
+			@if($i > 1){
+				[class*="#{$col-prefix}"]:nth-of-type(#{$i}n+#{$i + 1}){
+					clear: both;
+				}
+			}
+		}
+	}
+}
+
+
+/**
+ * @description: Agrega atributos a columnas customizadas.
+ * @mixing: custom-cgrid-column
+ * @param {column} num, numero de ancho de columna
+ * @param {fluid} boolean, padding
+ * @param {type} string, tipo de atributo
+ */
+@mixin custom-column($column, $type: width, $fluid: true){
+	float: left;
+	@include custom-cgrid-column($column, $type);
+	@if($fluid){
+		padding-left:  ceil(($gt-width) / 2)#{$gb-unit};
+		padding-right: floor(($gt-width) / 2)#{$gb-unit};
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

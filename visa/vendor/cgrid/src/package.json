@@ -1,0 +1,20 @@
+{
+  "name": "cgrid",
+  "version": "1.0.0",
+  "description": "Grid System with support of flex",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "grid, responsive, flex"
+  ],
+  "author": "sebastian yabiku",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.3.2",
+    "run-sequence": "^1.2.2"
+  }
+}

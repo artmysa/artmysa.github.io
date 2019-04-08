@@ -1,0 +1,22 @@
+{
+  "name": "cgrid",
+  "description": "Grid System with support of flex",
+  "main": "index.js",
+  "authors": [
+    "sebastian yabiku"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "grid",
+    "responsive",
+    "flex"
+  ],
+  "homepage": "https://github.com/sebastian-yabiku/cgrid",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

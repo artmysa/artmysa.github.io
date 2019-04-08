@@ -1,0 +1,40 @@
+/**
+ * @description: LLamado a mixings.
+ */
+
+/* class-gral
+---------------------------------------------------------------*/
+@include class-gral;
+
+/* <400
+---------------------------------------------------------------*/
+@media (max-width: $vp-mobile#{$gb-unit}) {
+  @include make-cgrid(xs);
+  @include clear-cgrid-column(xs);
+}
+
+/* Between 400 and 800
+---------------------------------------------------------------*/
+@media (min-width: $vp-mobile#{$gb-unit}) and (max-width: $vp-tablet#{$gb-unit}) {
+  @include make-cgrid(sm);
+  @include clear-cgrid-column(sm);
+}
+
+/* Between 800 and 1200
+---------------------------------------------------------------*/
+@media (min-width: $vp-tablet#{$gb-unit}) {
+  @include make-cgrid(md);
+  @include clear-cgrid-column(md);
+}
+
+/* >1200
+---------------------------------------------------------------*/
+@media (min-width: $vp-wide#{$gb-unit}) {
+  @include make-cgrid(lg);
+  @include clear-cgrid-column(lg);
+}
+
+
+
+
+

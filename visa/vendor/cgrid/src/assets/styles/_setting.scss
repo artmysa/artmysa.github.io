@@ -1,0 +1,92 @@
+/**
+ * @description: Objeto de Configuración.
+ */
+$settings: (
+	global: (
+		unit : "px",
+		layout : 1000
+	),
+	row: (
+		class: "cgrid-row",
+		prefix: "cgrid-row--"
+	),
+	column: (
+		total: 12,
+		class: "col",
+		prefix: "col-"
+	),
+	gutter: (
+  	width:20
+	),
+	mediaqueries:(
+  	enable:true
+  ),
+  viewports:(
+  	mobil: 426,    //xs
+  	tablet: 800,   //sm
+  	desktop: 1200, //md
+    wide: 1200     //lg
+  )
+);
+
+
+/**
+ * @description: Function para obtener datos de objeto.
+ */
+@function map-sub-map($map, $keys, $subkey){
+  $submap: map-get(map-get($map, $keys), $subkey);
+  @return $submap;
+}
+
+
+/**
+ * @description: Definición de variables.
+ */
+
+/* Unidades Globales
+---------------------------------------------------------------*/
+$gb-unit: map-sub-map($settings, 'global', 'unit');
+$gb-layout: map-sub-map($settings, 'global', 'layout');
+
+/* Atributos de row
+---------------------------------------------------------------*/
+$row-class: map-sub-map($settings, 'row', 'class');
+$row-prefix: map-sub-map($settings, 'row', 'prefix');
+
+/* Atributos de columnas
+---------------------------------------------------------------*/
+$col-total: map-sub-map($settings, 'column', 'total');
+$col-class: map-sub-map($settings, 'column', 'class');
+$col-prefix: map-sub-map($settings, 'column', 'prefix');
+
+/* Espaciados
+---------------------------------------------------------------*/
+$gt-width: map-sub-map($settings, 'gutter', 'width');
+
+/* Mediaqueries
+---------------------------------------------------------------*/
+$mq-enable: map-sub-map($settings, 'mediaqueries', 'enable');
+
+/* Viewports
+---------------------------------------------------------------*/
+$vp-mobile: map-sub-map($settings, 'viewports', 'mobil')#{px};
+$vp-tablet: map-sub-map($settings, 'viewports', 'tablet');
+$vp-desktop: map-sub-map($settings, 'viewports', 'desktop');
+$vp-wide: map-sub-map($settings, 'viewports', 'wide');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
